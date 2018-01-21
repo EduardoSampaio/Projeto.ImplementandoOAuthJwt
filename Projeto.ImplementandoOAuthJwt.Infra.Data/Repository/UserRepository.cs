@@ -52,7 +52,6 @@ namespace Projeto.ImplementandoOAuthJwt.Infra.Data.Repository
                 "SELECT u.id,u.UserName,u.Email FROM [Users] u WHERE Id = @Id",
                 param: new { id }
             ).FirstOrDefault();
-
         }
 
         public void Save(User entity)
@@ -66,7 +65,7 @@ namespace Projeto.ImplementandoOAuthJwt.Infra.Data.Repository
         public void Update(User entity)
         {
             _context.DbConnection.Execute(
-              "UPDATE User SET UserName = @UserName,Email = @Email,Password = @Password WHERE Id = @Id",
+              "UPDATE [Users] SET UserName = @UserName,Email = @Email,Password = @Password WHERE Id = @Id",
               entity
           );
         }

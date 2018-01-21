@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Projeto.ImplementandoOAuthJwt.Infra.Data.Repository
 {
-    public class RoleRepository: IRoleRepository
+    public class RoleRepository : IRoleRepository
     {
         private DapperContext _context;
 
@@ -25,7 +25,7 @@ namespace Projeto.ImplementandoOAuthJwt.Infra.Data.Repository
         public IList<Role> GetAll(int skip = 0, int take = 50)
         {
             return _context.DbConnection.Query<Role>(
-               "SELECT r.id,r.name,r.userId FROM [Roles] r order by name OFFSET @Skip ROWS FETCH NEXT @take ROWS ONLY ",
+               "SELECT r.id,r.name FROM [Roles] r order by name OFFSET @Skip ROWS FETCH NEXT @take ROWS ONLY ",
                  param: new { skip, take })
                  .ToList();
         }
@@ -33,17 +33,15 @@ namespace Projeto.ImplementandoOAuthJwt.Infra.Data.Repository
         public Role GetById(Guid id)
         {
             return _context.DbConnection.Query<Role>(
-               "SELECT r.id,r.name,r.userid FROM [Roles] r  WHERE id = @id",
+               "SELECT r.id,r.name FROM [Roles] r  WHERE id = @id",
                param: new { id }
            ).FirstOrDefault();
         }
 
-
-
         public void Save(Role entity)
         {
             _context.DbConnection.Execute(
-             "INSERT INTO [Roles] (Id,Name,UserId) VALUES (@Id,@Name,@UserId)",
+             "INSERT INTO [Roles] (Id,Name) VALUES (@Id,@Name)",
              entity
          );
         }

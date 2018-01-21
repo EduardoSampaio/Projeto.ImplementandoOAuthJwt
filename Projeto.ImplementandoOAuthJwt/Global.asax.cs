@@ -1,6 +1,4 @@
-﻿using System.Web.Http;
-
-namespace Projeto.ImplementandoOAuthJwt
+﻿namespace Projeto.ImplementandoOAuthJwt
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

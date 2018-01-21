@@ -5,10 +5,8 @@ using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Projeto.ImplementandoOAuthJwt.Authorization;
-using SimpleInjector.Lifestyles;
 using System;
 using System.Configuration;
-using System.Linq;
 using System.Web.Http;
 
 [assembly: OwinStartup(typeof(Projeto.ImplementandoOAuthJwt.Startup))]
@@ -19,10 +17,11 @@ namespace Projeto.ImplementandoOAuthJwt
     {
         private readonly string issuer = ConfigurationManager.AppSettings["issuer"];
         private readonly byte[] secret = TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["secret"]);
+
         public void Configuration(IAppBuilder app)
         {
             var config = new HttpConfiguration();
-          
+
             WebApiConfig.Register(config);
             SwaggerConfig.Register(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
@@ -43,7 +42,6 @@ namespace Projeto.ImplementandoOAuthJwt
             };
             app.UseOAuthAuthorizationServer(authServerOptions);
 
-
             app.UseJwtBearerAuthentication(new JwtBearerAuthenticationOptions
             {
                 AuthenticationMode = AuthenticationMode.Active,
@@ -53,7 +51,6 @@ namespace Projeto.ImplementandoOAuthJwt
                     new SymmetricKeyIssuerSecurityTokenProvider(issuer, secret)
                 }
             });
-
         }
     }
 }

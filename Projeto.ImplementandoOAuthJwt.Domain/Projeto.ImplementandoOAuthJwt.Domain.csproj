@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DomainEntities\Role.cs" />
     <Compile Include="DomainEntities\User.cs" />
+    <Compile Include="DomainEntities\UserRole.cs" />
     <Compile Include="Interfaces\IBaseRepository.cs" />
     <Compile Include="Interfaces\IRoleRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />

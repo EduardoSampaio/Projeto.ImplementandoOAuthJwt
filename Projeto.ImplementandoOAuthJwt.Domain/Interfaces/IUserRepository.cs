@@ -1,7 +1,4 @@
 ﻿using Projeto.ImplementandoOAuthJwt.Domain.DomainEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Projeto.ImplementandoOAuthJwt.Domain.Interfaces
 {
@@ -10,6 +7,5 @@ namespace Projeto.ImplementandoOAuthJwt.Domain.Interfaces
         User GetByEmail(string email);
 
         bool Authentication(string email, string password);
-
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
-using Projeto.ImplementandoOAuthJwt.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
@@ -13,9 +11,9 @@ namespace Projeto.ImplementandoOAuthJwt.Authorization
     internal class CustomOAuthProvider : OAuthAuthorizationServerProvider
     {
         private string[] roles = new string[] { "user", "admin" }; // roles mocks
+
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-           
             string clientId = string.Empty;
             string clientSecret = string.Empty;
 

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
-using System.Web.Http.Cors;
 
 namespace Projeto.ImplementandoOAuthJwt
 {
@@ -11,7 +10,7 @@ namespace Projeto.ImplementandoOAuthJwt
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-      
+
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             //camel case
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();

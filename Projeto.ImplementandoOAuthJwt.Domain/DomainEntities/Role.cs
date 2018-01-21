@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Projeto.ImplementandoOAuthJwt.Domain.DomainEntities
 {
@@ -11,8 +10,7 @@ namespace Projeto.ImplementandoOAuthJwt.Domain.DomainEntities
         }
 
         public Guid Id { get; set; }
-        public Guid UserId { get; set; }
         public string Name { get; set; }
-        public ICollection<User> Users { get; set; }
+        public User Users { get; set; }
     }
 }

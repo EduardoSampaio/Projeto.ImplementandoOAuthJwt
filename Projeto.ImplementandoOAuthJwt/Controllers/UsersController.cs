@@ -31,7 +31,7 @@ namespace Projeto.ImplementandoOAuthJwt.Controllers
                 };
 
                 _userRepository.Save(user);
-                return Ok();
+                return Ok(user);
             }
             catch (Exception e)
             {
@@ -41,7 +41,7 @@ namespace Projeto.ImplementandoOAuthJwt.Controllers
 
         [HttpPut]
         [Route("users")]
-        public IHttpActionResult UpdateUser(UserModel model)
+        public IHttpActionResult UpdateUser(UserUpdateModel model)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace Projeto.ImplementandoOAuthJwt.Controllers
                 user.Email = model.Email;
                 user.Username = model.Username;
                 _userRepository.Update(user);
-                return Ok();
+                return Ok(user);
             }
             catch (Exception e)
             {
@@ -65,7 +65,7 @@ namespace Projeto.ImplementandoOAuthJwt.Controllers
             try
             {
                 _userRepository.Delete(id);
-                return Ok();
+                return Ok(id);
             }
             catch (Exception e)
             {
@@ -77,16 +77,13 @@ namespace Projeto.ImplementandoOAuthJwt.Controllers
         [Route("users")]
         public IHttpActionResult ListUser(int skip = 0, int take = 50)
         {
-
             var listModel = _userRepository.GetAll(skip, take)
                 .Select(x =>
                 new UserModel
                 {
                     Id = x.Id,
                     Email = x.Email,
-                    Password = x.Password,
                     Username = x.Username
-
                 });
             return Ok(listModel);
         }
@@ -100,7 +97,6 @@ namespace Projeto.ImplementandoOAuthJwt.Controllers
             {
                 Id = user.Id,
                 Email = user.Email,
-                Password = user.Password,
                 Username = user.Username
             };
 
@@ -108,15 +104,13 @@ namespace Projeto.ImplementandoOAuthJwt.Controllers
         }
 
         [HttpGet]
-        [Route("users/email/{email}")]
+        [Route("users/{email}/email")]
         public IHttpActionResult GetByEmail(string email)
         {
             var user = _userRepository.GetByEmail(email);
             var model = new UserModel()
             {
                 Id = user.Id,
-                Email = user.Email,
-                Password = user.Password,
                 Username = user.Username
             };
 
